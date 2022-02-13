@@ -7,6 +7,15 @@ def solution(A, K):
     return A
 
 
+def another_solution(A, K):
+    length = len(A)
+    if length > 1:
+        rotate = K % length
+        if rotate != 0:
+            a = A[rotate-1:length] + A[0:rotate-1]
+            return a
+    return A
+
 if __name__=="__main__":
     A = []
     res = solution(A, 6)

@@ -1,6 +1,5 @@
 def solution(N):
     n_bin = format(N, "b")
-    print(n_bin)
     bins = n_bin.split("1")
     result = 0
     length = len(bins)
@@ -16,6 +15,7 @@ def solution(N):
 
 if __name__=="__main__":
     N = 51712
-    # N = 5
+    N = 4641
+    N = 2320
     res = solution(N)
     print(res)
