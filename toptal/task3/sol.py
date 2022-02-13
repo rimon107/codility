@@ -1,4 +1,4 @@
-from math import ceil
+from sys import maxsize
 
 def solution(A):
     size = len(A)
@@ -9,28 +9,35 @@ def solution(A):
     while True:
         total = 0
         flag = False
-        first = 0
         for i in range(size-1):
-            half = A[i] / 2
-            if ceil(half) >= A[i+1]:
+            if A[i]==0:
+                continue
+            if A[i] > A[i+1]:
                 filter += 1
-                A[i] = half
-                first = 1
-            else:
-                if first==0:
-                    filter += 1
-                    flag = True
-
+                A[i] = A[i] / 2
                 total = sum(A)
                 if total <= res_half:
                     flag = True
                 break
+            if A[i] == A[i+1]:
+                filter += 2
+                A[i] = A[i] / 2
+                A[i+1] = A[i+1] / 2
+                total = sum(A)
+                if total <= res_half:
+                    flag = True
+                break
+            else:
+                total = sum(A)
+                if total <= res_half:
+                    flag = True
+                    break
         if flag:
             break
-        if count==2:
+        if count==maxsize:
             break
         count += 1
-    print(f"filter: {filter}")
+    print(filter)
     return filter
     
 
@@ -39,12 +46,6 @@ from timeit import timeit
 from random import randint
 
 if __name__=="__main__":
-    # A = [[[4, 4, 5, 5, 1], [3, 2, 4, 3, 1]],]
-    
-    # A = []
-    # N = 20000
-    # for _ in range(N):
-    #     A.append(randint(1, N*2+1))
     A = [
         [5, 19, 8, 1],
         [10, 10],
